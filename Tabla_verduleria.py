@@ -85,3 +85,6 @@ class Table:
         # Expandir filas para ocupar todo el espacio disponible
         for i in range(len(productos_precios) + 1):
             root.grid_rowconfigure(i, weight=1)
+        
+        # Configurar el scrollbar para que empiece desde arriba
+        canvas.yview_moveto(0)
