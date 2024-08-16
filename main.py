@@ -1,9 +1,9 @@
 import tkinter as tk
-from menu_desplegable import crear_menu_desplegable
-from Lista_de_tareas import crear_lista_De_tareas
-from Barra_desplazamiento import crear_barra_desplazamiento
-from Reloj_simple import crear_reloj
-from Tabla_verduleria import Table
+from funcionalidades.menu_desplegable import crear_menu_desplegable
+from funcionalidades.Lista_de_tareas import crear_lista_De_tareas
+from funcionalidades.Barra_desplazamiento import crear_barra_desplazamiento
+from funcionalidades.Reloj_simple import crear_reloj
+from funcionalidades.Tabla_verduleria import Table
 
 ventana = tk.Tk()
 ventana.geometry("1024x480")
@@ -28,12 +28,9 @@ boton1.pack(side=tk.LEFT, padx=10, pady=10)
 boton1 = tk.Button(frame_botones, text = "Reloj", command = crear_reloj)
 boton1.pack(side=tk.LEFT, padx=10, pady=10)
 
-separator = tk.Frame(height=2, bd=1, relief=tk.SUNKEN)
-separator.pack(fill=tk.X, padx=5, pady=5)
-
 # Frame inferior para la tabla de verduleria
-frame_tabla = tk.Frame(ventana)
-frame_tabla.pack(side=tk.BOTTOM, fill=tk.BOTH, expand=True)
+frame_tabla = tk.Frame(ventana, height=30)
+frame_tabla.pack(side=tk.RIGHT, fill=tk.BOTH, pady=15)
 
 # Crear la tabla de verdulería en el frame inferior
 tabla = Table(frame_tabla)
