@@ -4,6 +4,10 @@ from funcionalidades.Tabla_verduleria import Table
 
 ventana = tk.Tk()
 ventana.geometry("1024x480")
+ventana.title("verduleria Informatorio")
+ruta_icono = "imagenes/icono_verduleria.png"
+icono = tk.PhotoImage(file=ruta_icono)
+ventana.iconphoto(True, icono)
 
 #Frame superior para colocar los botones
 barra_menu = tk.Menu(ventana)
@@ -11,16 +15,12 @@ ventana.config(menu=barra_menu)
 
 # Crear el menú principal
 menu_principal = tk.Menu(barra_menu, tearoff=0)
-barra_menu.add_cascade(label='Principal', menu=menu_principal)
+barra_menu.add_cascade(label='Opciones', menu=menu_principal)
+barra_menu.add_command(label="Lista de Tareas", command=crear_lista_De_tareas)
 
 # Submenú de opciones
 submenu = tk.Menu(menu_principal, tearoff=0)
-menu_principal.add_cascade(label='Opciones', menu=submenu)
 menu_principal.add_cascade(label="Salir", command=ventana.quit)
-
-# Añadir opciones al submenú
-submenu.add_command(label="Lista de Tareas", command=crear_lista_De_tareas)
-submenu.add_separator()
 
 # Frame derecho para la tabla de verduleria
 frame_tabla = tk.Frame(ventana, height=30)
