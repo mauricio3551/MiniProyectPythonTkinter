@@ -1,18 +1,15 @@
+
 import tkinter as tk
 import time
-def crear_reloj():
-    ventana = tk.Tk()
-    ventana.title('Reloj simple')
-    ventana.geometry('400x200') 
-    reloj = tk.Label(ventana, font = ('Arial', 60), bg = 'blue', fg = 'white')
 
-    def hora():
+def crear_reloj(parent):
+    reloj = tk.Label(parent, font=('Arial', 12), background='black', foreground='white')
+    reloj.pack(side=tk.TOP, anchor='nw', padx=10, pady=10)
+
+    def actualizar_reloj():
         tiempo_actual = time.strftime('%H:%M:%S')
-        reloj.config(text = tiempo_actual)
-        ventana.after(1000, hora)
+        reloj.config(text=tiempo_actual)
+        reloj.after(1000, actualizar_reloj) # Actualiza cada segundo
 
-    reloj.pack(anchor = 'center')
-
-    hora()
-
-    ventana.mainloop()
+    actualizar_reloj()
+    return reloj
