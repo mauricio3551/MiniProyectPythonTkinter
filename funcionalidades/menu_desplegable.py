@@ -1,11 +1,6 @@
 import tkinter as tk
-def crear_menu_desplegable():
-    ventana = tk.Tk()
-    ventana.title('Menú desplegable')
-    ventana.geometry('400x200') 
-
-    barra_menu = tk.Menu(ventana)
-    ventana.config(menu=barra_menu)
+def crear_menu_desplegable(self):
+    barra_menu = tk.Menu(self.root)
 
     menu_principal = tk.Menu(barra_menu)
     barra_menu.add_cascade(label = 'Principal', menu=menu_principal)
@@ -15,5 +10,3 @@ def crear_menu_desplegable():
 
     submenu.add_command(label = 'Opción 1')
     submenu.add_command(label = 'Opción 2')
-
-    ventana.mainloop()
