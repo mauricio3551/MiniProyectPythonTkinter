@@ -2,6 +2,7 @@ import tkinter as tk
 from tkinter import ttk, messagebox
 from funcionalidades.Boton_agregar import agregar_producto
 from funcionalidades.Boton_eliminar import eliminar_producto
+from funcionalidades.Reloj_simple import crear_reloj
  
 class Table:
     def __init__(self, root):
@@ -77,7 +78,10 @@ class Table:
 
         # Botones de acción
         frame_botones = tk.Frame(root)
-        frame_botones.pack(side=tk.BOTTOM, padx=10, pady=10)
+        frame_botones.pack(side=tk.BOTTOM, padx=10, pady=10, anchor="center")
+
+        reloj = crear_reloj(frame_botones)
+        reloj.pack(pady=(0,100), padx=(20, 0))
 
         self.btn_agregar = tk.Button(frame_botones, text="Agregar Producto", command=lambda: agregar_producto(self))
         self.btn_agregar.pack(fill=tk.X)
@@ -88,39 +92,3 @@ class Table:
     def llenar_tabla(self):
         for producto, total in  self.productos_precios.items():
             self.tree.insert("", tk.END, values=(producto, total))
-
-    '''def agregar_producto(self):
-        # Crear una nueva ventana para añadir producto
-        self.nueva_ventana = tk.Toplevel(self.root)
-        self.nueva_ventana.title("Agregar Producto")
-
-        tk.Label(self.nueva_ventana, text="Producto").grid(row=0, column=0)
-        self.entrada_producto = tk.Entry(self.nueva_ventana)
-        self.entrada_producto.grid(row=0, column=1)
-
-        tk.Label(self.nueva_ventana, text="Total").grid(row=1, column=0)
-        self.entrada_total = tk.Entry(self.nueva_ventana)
-        self.entrada_total.grid(row=1, column=1)
-
-        tk.Button(self.nueva_ventana, text="Agregar", command=self.confirmar_agregar).grid(row=2, columnspan=2, pady=5)
-
-    def confirmar_agregar(self):
-        producto = self.entrada_producto.get()
-        total = self.entrada_total.get()
-
-        if producto and total.isdigit():
-            self.productos_precios[producto] = int(total)
-            self.tree.insert("", tk.END, values=(producto, total))
-            self.nueva_ventana.destroy()
-        else:
-            messagebox.showerror("Error", "Debe ingresar un nombre de producto válido y un total numérico.")
-
-    def eliminar_producto(self):
-        seleccion = self.tree.selection()
-        if seleccion:
-            item = self.tree.item(seleccion)
-            producto = item['values'][0]
-            del  self.productos_precios[producto]
-            self.tree.delete(seleccion)
-        else:
-            messagebox.showerror("Error", "Debe seleccionar un producto para eliminar.")'''
