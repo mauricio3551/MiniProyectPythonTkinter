@@ -1,8 +1,5 @@
 import tkinter as tk
-from funcionalidades.menu_desplegable import crear_menu_desplegable
 from funcionalidades.Lista_de_tareas import crear_lista_De_tareas
-from funcionalidades.Barra_desplazamiento import crear_barra_desplazamiento
-from funcionalidades.Reloj_simple import crear_reloj
 from funcionalidades.Tabla_verduleria import Table
 
 ventana = tk.Tk()
@@ -26,12 +23,26 @@ submenu.add_command(label="Lista de Tareas", command=crear_lista_De_tareas)
 #submenu.add_command(label="Reloj", command=crear_reloj)
 submenu.add_separator()
 
-# Frame inferior para la tabla de verduleria
+# Frame derecho para la tabla de verduleria
 frame_tabla = tk.Frame(ventana, height=30)
 frame_tabla.pack(side=tk.RIGHT, fill=tk.BOTH, pady=15)
 
 # Crear la tabla de verdulería en el frame inferior
 tabla = Table(frame_tabla)
+
+# Frame izquierdo para la imagen de verduleria
+frame_izquierdo = tk.Frame(ventana, height=30)
+frame_izquierdo.pack(side=tk.LEFT, fill=tk.BOTH, pady=15)
+frame_imagen = tk.Frame(frame_izquierdo)
+frame_imagen.pack(side=tk.TOP, fill=tk.BOTH)
+
+
+ruta_imagen = "imagenes/imagen_verduras_costado.png"
+
+imagen = tk.PhotoImage(file=ruta_imagen)
+label_imagen = tk.Label(frame_imagen, image=imagen)
+label_imagen.pack(side=tk.TOP)
+label_imagen.image = imagen
 
 ventana.mainloop()
 
