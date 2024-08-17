@@ -1,5 +1,6 @@
 import tkinter as tk
-from tkinter import simpledialog, messagebox
+import pandas as pd
+from tkinter import messagebox
 
 def agregar_producto(self):
         # Crear una nueva ventana para añadir producto
@@ -23,8 +24,14 @@ def confirmar_agregar(self):
         total = self.entrada_total.get()
 
         if producto and total.isdigit():
-            self.productos_precios[producto] = int(total)
+            total = int(total)
+            self.productos_precios[producto] = f"${total}"
             self.tree.insert("", tk.END, values=(producto, f"${total}"))
+            
+            # Actualizar el archivo Excel
+            df = pd.DataFrame(list(self.productos_precios.items()), columns=["Producto", "Precio"])
+            df.to_excel("datos/productos_precios.xlsx", index=False)
+            
             self.nueva_ventana.destroy()
         else:
             messagebox.showerror("Error", "Debe ingresar un nombre de producto válido y un total numérico.")
